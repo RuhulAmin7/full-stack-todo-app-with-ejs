@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
+    <title>Login</title>
+
+</head>
+
+<body>
+    <div class="container card p-4 my-4 " style="max-width: 400px;">
+        <h4 class="text-center text-light rounded p-2 bg-dark">LOGIN</h4>
+
+        <form action="/login" method="post">
+
+            <div class="mb-1">
+                <label for="email" class="form-label">Email address</label>
+                <input type="email" name="email" id="email" class="form-control <%= emailError? 'border-danger': '' %>"
+                    id="email" value=<%=email %>>
+            </div>
+            <% if(error && emailError ){%>
+                <small class="text-danger">
+                    <%= error %>
+                </small>
+                <%} %>
+
+
+                    <div class="mb-1">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" name="password" id="password"
+                            class="form-control <%= passwordError? 'border-danger':'' %>" id="password">
+                    </div>
+
+                    <% if(error && passwordError) {%>
+                        <small class="text-danger">
+                            <%= error %>
+                        </small>
+                        <%}%>
+                            <button type="submit" class="btn btn-primary w-100 mt-3">Login</button>
+        </form>
+        <p class="text-muted text-center mt-4">New User? <a href="/register">Please Register</a></p>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
+    <title>Todo</title>
+
+</head>
+
+<body>
+    <header class="bg-dark py-2 text-end">
+        <div class="container">
+            <button class="btn btn-secondary">Login</button>
+        </div>
+    </header>
+    <div class=" container card p-4 my-4 " style=" max-width: 1000px;">
+        <h4 class="text-center text-light rounded p-2 mb-4 bg-danger">Add a new task</h4>
+        <form>
+            <div class=" d-flex gap-2 align-items-center">
+                <input type="text" name="title" placeholder="Task Title" class="form-control" id="title">
+                <select class="form-control" id="status" name="status">
+                    <option disabled selected>--Select Action--</option>
+                    <option value="completed">Completed</option>
+                    <option value="pending">Pending</option>
+                </select>
+                <input type="date" name="date" id="date" class="form-control" id="date">
+                <button type="submit" class="btn btn-success">Add</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="display-task container mt-5 card pt-3">
+        <div>
+            <h4 class="text-center bg-secondary rounded p-2 text-light">Your task list</h4>
+            <table class="table table-striped table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>SL</th>
+                        <th>Title</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Coding Practice</td>
+                        <td>10-12-2020</td>
+                        <td>Completed</td>
+                        <td>
+                            <button class="btn btn-warning">Edit</button>
+                            <button class="btn btn-danger">Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>
