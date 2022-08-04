@@ -1,6 +1,6 @@
 const notFoundHandler = (req, res, next) => {
   try {
-    res.render('common/notFound', { title: 404, message: 'Page not found' });
+    res.render('common/notFound', { title: 404, message: 'Page not found !' });
   } catch (error) {
     res.render('common/error', { title: 'Error occurred', error });
   }

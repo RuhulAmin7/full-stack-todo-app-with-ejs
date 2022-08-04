@@ -10,10 +10,12 @@ const cookieParser = require('cookie-parser');
 const authRouter = require('./routes/authRouter');
 const todoRouter = require('./routes/todoRouter');
 const { authChecker } = require('./middlewares/auth/authMiddleware.js');
+const indexHandler = require('./controllers/indexController');
+const Todo = require('./models/Todo');
 
 // initialization and configuration
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3000;
 app.set('view engine', 'ejs');
 
 // middleware
@@ -25,7 +27,9 @@ app.use(cookieParser(process.env.COOKIE_SECRET));
 
 // routers
 app.use('/', authRouter);
-app.use('/', authChecker, todoRouter);
+app.use('/', todoRouter);
+
+app.get('/', authChecker, indexHandler);
 
 // app.use('/', (req, res) => {
 //   res.render('index');

@@ -7,13 +7,21 @@ const todoSchema = new Schema({
     trim: true,
     required: true,
   },
-  status: {
+  priority: {
     type: String,
     required: true,
   },
   date: {
+    type: Date,
+    trim: true,
+    required: true,
+  },
+  status: {
     type: String,
     trim: true,
+  },
+  email: {
+    type: String,
     required: true,
   },
 });

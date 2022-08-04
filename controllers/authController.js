@@ -87,4 +87,14 @@ auth.loginUser = async (req, res) => {
   }
 };
 
+// logoutHandler
+auth.logoutHandler = (req, res) => {
+  try {
+    res.clearCookie('jwt_token');
+    res.redirect('/');
+  } catch (error) {
+    throw error;
+  }
+};
+
 module.exports = auth;
