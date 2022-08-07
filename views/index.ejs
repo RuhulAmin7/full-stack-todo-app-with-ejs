@@ -6,7 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
+    <script defer src="/js/index.js"></script>
     <title>Todo</title>
+
 
 </head>
 
@@ -19,15 +21,15 @@
         </div>
     </header>
     <div class=" container card p-4 my-4 " style=" max-width: 800px;">
-        <h4 class="text-center text-light rounded p-1 mb-4 bg-danger">Add a new task</h4>
-        <form action="/addnewtask" method="post">
-            <div class=" d-flex gap-2 align-items-center">
+        <h4 class="text-center text-light rounded p-1 mb-4 bg-secondary">Add a new task</h4>
+        <form id="form" action="/addnewtask" method="post">
+            <div class="d-flex gap-2 align-items-center">
                 <input type="text" name="title" placeholder="Task Title" class="form-control" id="title">
                 <select class="form-control" id="status" name="priority">
                     <option disabled selected>--Select Priority--</option>
-                    <option value="high">High</option>
-                    <option value="medium">Medium</option>
-                    <option value="low">Low</option>
+                    <option name='High' value="High">High</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Low">Low</option>
                 </select>
                 <input type="date" name="date" id="date" class="form-control" id="date">
                 <button type="submit" class="btn btn-success">Add</button>
@@ -40,7 +42,6 @@
             <h4 class="text-center bg-secondary rounded p-1 text-light">Your task list</h4>
             <table class="table table-striped table-bordered table-hover">
                 <% if(todos.length>0) {%>
-
                     <thead>
                         <tr>
                             <th>SL</th>
@@ -53,31 +54,31 @@
                     </thead>
                     <tbody>
                         <% todos.map((todo, index)=> { %>
-                            <tr>
+                            <tr id="<%=todo._id  %>">
                                 <td>
                                     <%= index +1 %>
                                 </td>
-                                <td>
+                                <td class="title">
                                     <%= todo.title %>
                                 </td>
-                                <td>
+                                <td class="priority">
                                     <%= todo.priority %>
                                 </td>
-                                <td>
+                                <td class="status">
                                     <%= todo.status %>
                                 </td>
-                                <td>
+                                <td class="date">
                                     <%= todo.date.toDateString() %>
                                 </td>
                                 <td>
-                                    <button date-id="<%=todo._id%>" class="btn btn-warning">Edit</button>
+                                    <button data-id="<%=todo._id%>" class="btn btn-warning">Edit</button>
                                     <a href="/deletetask/<%=todo._id%>" class="btn btn-danger">Delete</a>
+                                    <a href="/changestatus/<%=todo._id%>" class="btn btn-success">Change Status</a>
                                 </td>
                             </tr>
                             <% }) %>
-
                     </tbody>
-                    <% }else{ %>
+                    <% } else { %>
                         <h4 class="text-warning text-center p-4">You didn't add any tasks</h4>
                         <% } %>
 

@@ -31,12 +31,9 @@ app.use('/', todoRouter);
 
 app.get('/', authChecker, indexHandler);
 
-// app.use('/', (req, res) => {
-//   res.render('index');
-// });
-
 // not found handler
 app.use(notFoundHandler);
+
 // error handler
 app.use(errorhandler);
 

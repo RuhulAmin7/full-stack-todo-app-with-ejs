@@ -1,6 +1,7 @@
 const Todo = require('../models/Todo');
 const ObjectId = require('mongodb').ObjectId;
 
+// add new todo
 async function addTodoHandler(req, res, next) {
   try {
     const todo = new Todo({
@@ -13,8 +14,6 @@ async function addTodoHandler(req, res, next) {
     const result = await todo.save();
     res.redirect('/');
   } catch (error) {
-    // throw new Error(error.message);
-
     next(error);
   }
 }
@@ -29,8 +28,30 @@ async function deleteTodoHandler(req, res) {
       return res.redirect('/');
     }
   } catch (error) {
-    throw error;
+    next(error);
   }
 }
 
-module.exports = { addTodoHandler, deleteTodoHandler };
+// change todo status
+async function changeStatusHandler(req, res, next) {
+  try {
+    const id = req.params.id;
+    const query = { _id: id, email: req.email };
+
+    const todo = await Todo.findOne(query);
+    const status = todo.status === 'Pending' ? 'Completed' : 'Pending';
+
+    const result = await Todo.findOneAndUpdate(query, {
+      $set: {
+        status,
+      },
+    });
+    if (result) {
+      return res.redirect('/');
+    }
+  } catch (error) {
+    next(error);
+  }
+}
+
+module.exports = { addTodoHandler, deleteTodoHandler, changeStatusHandler };
