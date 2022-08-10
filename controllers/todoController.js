@@ -54,4 +54,27 @@ async function changeStatusHandler(req, res, next) {
   }
 }
 
-module.exports = { addTodoHandler, deleteTodoHandler, changeStatusHandler };
+// update the task
+const updateTaskHandler = async (req, res, next) => {
+  try {
+    const { title, priority, date, taskId } = req.body;
+    // console.log(title, priority, date, taskId);
+    const task = {
+      title,
+      priority,
+      date,
+    };
+    const result = await Todo.findOneAndUpdate({ _id: taskId }, task);
+    res.redirect('/');
+  } catch (error) {
+    next(error);
+  }
+};
+
+// exports
+module.exports = {
+  addTodoHandler,
+  deleteTodoHandler,
+  changeStatusHandler,
+  updateTaskHandler,
+};
