@@ -15,7 +15,7 @@ const Todo = require('./models/Todo');
 
 // initialization and configuration
 const app = express();
-const PORT = process.env.PORT || 3000;
+const port = process.env.PORT || 3000;
 app.set('view engine', 'ejs');
 
 // middleware
@@ -38,8 +38,8 @@ app.use(notFoundHandler);
 app.use(errorhandler);
 
 // server listener
-app.listen(PORT, () => {
+app.listen(port, () => {
   db().then(() => {
-    console.log('Server is running on http://localhost:' + PORT);
+    console.log('Server is running on http://localhost:' + port);
   });
 });
