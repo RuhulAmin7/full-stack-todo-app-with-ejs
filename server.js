@@ -15,7 +15,7 @@ const Todo = require('./models/Todo');
 
 // initialization and configuration
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT =  3000;
 app.set('view engine', 'ejs');
 
 // middleware
