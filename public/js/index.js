@@ -9,18 +9,15 @@ const submitBtn = document.getElementById('submit');
 
       [...tr.children].forEach((td) => {
         if (td.className === 'title') {
-          form[0].value = td.textContent;
+          form[0].value = td.textContent.trim();
         }
         if (td.className === 'priority') {
           form[1].selectedIndex =
-            td.textContent ===
-            '\n                                    High\n                                '
+            td.textContent.trim() === 'High'
               ? 1
-              : td.textContent ===
-                '\n                                    Medium\n                                '
+              : td.textContent.trim() === 'Medium'
               ? 2
-              : td.textContent ===
-                '\n                                    Low\n                                '
+              : td.textContent.trim() === 'Low'
               ? 3
               : 0;
         }

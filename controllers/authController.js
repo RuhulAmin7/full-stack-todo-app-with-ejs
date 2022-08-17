@@ -13,7 +13,7 @@ auth.registerPageHandler = async (req, res) => {
   }
 };
 //  register form controller
-auth.registerUser = async (req, res) => {
+auth.registerUser = async (req, res, next) => {
   try {
     const { name, email, password } = req.body;
     const user = new User({
@@ -21,11 +21,16 @@ auth.registerUser = async (req, res) => {
       email,
       password: await hashStr(password),
     });
+    const isExist = await User.findOne({ email });
+    if (isExist) {
+      res.render('auth/signup', { error: true });
+      return;
+    }
 
     const result = await user.save();
     res.render('signupdone');
   } catch (error) {
-    throw error;
+    next(error);
   }
 };
 
@@ -39,11 +44,11 @@ auth.loginPageHandler = async (req, res) => {
       passwordError: false,
     });
   } catch (error) {
-    throw error;
+    next(error);
   }
 };
 //  login form controller
-auth.loginUser = async (req, res) => {
+auth.loginUser = async (req, res, next) => {
   try {
     const { email, password } = req.body;
     const user = await User.findOne({ email });
@@ -83,7 +88,7 @@ auth.loginUser = async (req, res) => {
       });
     }
   } catch (error) {
-    throw error;
+    next(error);
   }
 };
 
