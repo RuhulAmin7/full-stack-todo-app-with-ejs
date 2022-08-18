@@ -11,7 +11,10 @@ async function addTodoHandler(req, res, next) {
       status: 'Pending',
       email: req.email,
     });
-    const result = await todo.save();
+    if(!req.body.title || !req.body.priority || !req.body.date){
+      return res.redirect('/');
+    }
+    const result = await todo.save();  
     res.redirect('/');
   } catch (error) {
     next(error);

@@ -12,11 +12,9 @@
 </head>
 
 <body class="login-container">
-    <div class="container card p-4 my-4 login-form" style="max-width: 400px;">
+    <div class="container card p-4 my-4 login-form">
         <h4 class="text-center rounded p-2">LOGIN</h4>
-
         <form action="/login" method="post">
-
             <div class="mb-1">
                 <label for="email" class="form-label">Email address</label>
                 <input type="email" name="email" id="email" class="form-control <%= emailError? 'border-danger': '' %>"
@@ -27,8 +25,6 @@
                     <%= error %>
                 </small>
                 <%} %>
-
-
                     <div class="mb-1">
                         <label for="password" class="form-label">Password</label>
                         <input type="password" name="password" id="password"
