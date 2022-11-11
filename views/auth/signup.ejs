@@ -14,8 +14,8 @@
 
 <body class="login-container">
     <div class="container card p-4 my-4 login-form">
-        <h4 class="text-center text-dark rounded p-2 ">SIGNUP</h4>
-        <form action="/register" method="post" >
+        <h4 class="text-center text-dark rounded p-2 text-secondary">SIGNUP</h4>
+        <form action="/register" method="post">
             <div class=" mb-3">
                 <label for="exampleInputEmail1" class="form-label">Your Name</label>
                 <input type="text" name="name" required class="form-control" id="name">
@@ -24,9 +24,9 @@
             <div class="mb-3">
                 <label for="email" class="form-label">Email address</label>
                 <input type="email" required name="email" class="form-control" id="email">
-                <% if(error) {%> 
+                <% if(error) {%>
                     <p class="text-danger">User already exist</p>
-                    <% } %> 
+                    <% } %>
             </div>
             <div class="mb-3">
                 <label for="password" class="form-label">Password</label>
